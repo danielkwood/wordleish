@@ -39,7 +39,7 @@ function checkAttempt(){
         }
 
         // grabs the user's attempt from the textbox
-        var attempt = document.getElementById('attempt').value;
+        var attempt = document.getElementById('attempt').value.toLowerCase();
 
         // check if the user's attempt is a valid word
         for(var i=0; i < words_array.length; i++){
@@ -80,4 +80,5 @@ function checkAttempt(){
         document.getElementById('result').innerHTML = "The word is <b>" + random_word + "</b>";
     }
     attempts += 1;
+    document.getElementById('attempt').value = "";
 }
