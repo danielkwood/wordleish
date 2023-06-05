@@ -1,84 +1,73 @@
-var attempts = 0;
-var words_array = [];
-var random_word = "";
-var word_exists = false;
-var guessed = false;
+<html>
+    <head>
+        <title>Wordle [clone]</title>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
 
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                words_array = allText.split("\n")
-                random_word = words_array[Math.floor(Math.random()*words_array.length)];
-                console.log(random_word);
-            }
-        }
-    }
-    rawFile.send(null);
-}
+    <body>
+        <h1>Wordle [clone]</h1>
+        <p>Guess the word in six attempts. Each attempt must be a valid five-letter word. Click button to submit.
+        <br>After each attempt, the colour of the letter tiles will change to show how close your guess was to the word.</p>
+        <p>A <span style="color: green;">green</span> tile means the letter is in the correct spot.<br>An <span style="color: orange;">orange</span> tile means the letter is in the word but not in the correct spot.<br>A white tile means the letter is not in the word in any spot.</p>
+    
+        <div class="tiles_container">
+            <div class="tiles" id="tiles0">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
 
-var valid_words = readTextFile("https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt");
+            <div class="tiles" id="tiles1">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
 
-function checkAttempt(){
-    // write your code in here
-    if(attempts < 6){
-        var tilerow = 'tiles' + attempts;
+            <div class="tiles" id="tiles2">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
 
-        var elements = document.getElementById(tilerow).children;
-        
-        // sets all tiles in the row to grey background colour
-        for(var i = 0; i < elements.length; i++){
-            elements.item(i).style.backgroundColor = "grey";
-        }
+            <div class="tiles" id="tiles3">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
 
-        // grabs the user's attempt from the textbox
-        var attempt = document.getElementById('attempt').value.toLowerCase();
+            <div class="tiles" id="tiles4">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
 
-        // check if the user's attempt is a valid word
-        for(var i=0; i < words_array.length; i++){
-            if(attempt == words_array[i]){
-                word_exists = true;
-            }
-        }
+            <div class="tiles" id="tiles5">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+        </div>
 
-        // check if user's attempt is valid word AND if it is 5 letters long
-        if(word_exists && attempt.length == 5){
-            // check each letter in the user's attempt (word)
-            for(var i=0; i < attempt.length; i++){
-                var elements = document.getElementById(tilerow).children;
-                elements.item(i).innerHTML = attempt[i];
-                // check each letter in the actual wordle
-                for(var j = 0; j < random_word.length; j++){
-                    
-                    if(attempt[i] == random_word[j]){
-                        console.log("is " , attempt[i] , " = " , random_word[j] , "?");
-                        var elements = document.getElementById(tilerow).children;
-                        elements.item(i).style.backgroundColor = "orange";
-                    }
-                }
+        <div class="attempt">
+            <input type="text" maxlength="5" id="attempt"/> <button onclick="checkAttempt();">Check</button>
+        </div>
 
-                // check if letter is in correct position
-                if(attempt[i] == random_word[i]){
-                    var elements = document.getElementById(tilerow).children;
-                    elements.item(i).style.backgroundColor = "green";
-                }
-            }
-        }
-        else{
-            alert("Word does not exist or is too short/long");
-        }
-        word_exists = false;
-    }
-    else{
-        document.getElementById('result').innerHTML = "The word is <b>" + random_word + "</b>";
-    }
-    attempts += 1;
-    document.getElementById('attempt').value = "";
-}
+        <div class="result">
+            <p id="result"></p>
+        </div>
+    
+    </body>
+</html>
