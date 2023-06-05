@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>Wordle [clone]</title>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+
+    <body>
+        <h1>Wordle [clone]</h1>
+        <p>Guess the word in six attempts. Each attempt must be a valid five-letter word. Click button to submit.
+        <br>After each attempt, the colour of the letter tiles will change to show how close your guess was to the word.</p>
+        <p>A <span style="color: green;">green</span> tile means the letter is in the correct spot.<br>An <span style="color: orange;">orange</span> tile means the letter is in the word but not in the correct spot.<br>A white tile means the letter is not in the word in any spot.</p>
+    
+        <div class="tiles_container">
+            <div class="tiles" id="tiles0">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+
+            <div class="tiles" id="tiles1">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+
+            <div class="tiles" id="tiles2">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+
+            <div class="tiles" id="tiles3">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+
+            <div class="tiles" id="tiles4">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+
+            <div class="tiles" id="tiles5">
+                <div class="tile" id="tile0"> </div>
+                <div class="tile" id="tile1"> </div>
+                <div class="tile" id="tile2"> </div>
+                <div class="tile" id="tile3"> </div>
+                <div class="tile" id="tile4"> </div>
+            </div>
+        </div>
+
+        <div class="attempt">
+            <input type="text" maxlength="5" id="attempt"/> <button onclick="checkAttempt();">Check</button>
+        </div>
+
+        <div class="result">
+            <p id="result"></p>
+        </div>
+    
+    </body>
+</html>
